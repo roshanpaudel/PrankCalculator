@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(yellow, green);
+}
+
+.calculator {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  border-radius: 10px;
+  background-color: rgb(168, 168, 168);
+  box-shadow: 0px 20px 40px 10px rgba(88, 88, 88, 0.363);
+}
+
+.display {
+  grid-column: span 4; /* Make the display span four columns */
+  text-align: right;
+  background-color: lightgreen;
+  box-shadow: 0px 4px 1px 1px rgb(128, 128, 128);
+  padding: 15px 10px;
+}
+button {
+  border-radius: 5px;
+  background-color: yellow;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 1px 1px rgb(128, 128, 128);
+  border: none;
+}
+.equals {
+  grid-column: span 2; /* Make the = button span two columns */
+}
