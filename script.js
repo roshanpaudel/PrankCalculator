@@ -14,10 +14,19 @@ const displayCalc = function (displayString) {
   display.innerText = displayString;
 };
 
+const appendInput = function (str1, str2) {
+  if (str1 == 0) {
+    console.log(eval(str1 + str2));
+    return eval(str1 + str2);
+  } else {
+    return (str1 += str2);
+  }
+};
+
 const inputProcessor = function (buttonText) {
   if (Number(buttonText)) {
-    evalString += buttonText;
-    displayString += buttonText;
+    displayString = appendInput(displayString, buttonText);
+    evalString = appendInput(evalString, buttonText);
     console.log(evalString);
   } else if (buttonText == "AC") {
     evalString = 0;
@@ -30,11 +39,10 @@ const inputProcessor = function (buttonText) {
     displayString = 0;
   } else if (buttonText == "=") {
     result = eval(evalString);
+    evalString = result;
     displayString = result;
   }
 };
-
-const Calculate = function (firstOperand, secondOperand) {};
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", (event) => {
