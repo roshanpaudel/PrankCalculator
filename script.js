@@ -1,37 +1,36 @@
 let buttonText = null;
 let displayText = 0;
-let numberString = 0;
-let firstOperand = 0;
-let secondOperand = 0;
+let evalString = 0;
+let displayString = 0;
 let operators = ["+", "-", "/", "*", "%"];
 let operatorInput = false;
+let result = 0;
 
 const buttons = document.querySelectorAll("button");
 console.log(buttons);
 
-const displayCalc = function (numberString) {
+const displayCalc = function (displayString) {
   const display = document.getElementById("display");
-  display.innerText = numberString;
+  display.innerText = displayString;
 };
 
 const inputProcessor = function (buttonText) {
   if (Number(buttonText)) {
-    numberString += buttonText;
-    console.log(numberString);
+    evalString += buttonText;
+    displayString += buttonText;
+    console.log(evalString);
   } else if (buttonText == "AC") {
-    numberString = 0;
-    firstOperand = 0;
-    secondOperand = 0;
-    operatorInput = false;
+    evalString = 0;
+    displayString = 0;
   } else if (buttonText == "C") {
-    numberString = 0;
-    secondOperand = 0;
+    evalString = 0;
+    displayString = 0;
   } else if (operators.includes(buttonText)) {
-    firstOperand = numberString;
-    numberString = 0;
-    operatorInput = true;
-  } else if (Number(buttonText) && operatorInput == true) {
-    s;
+    evalString += buttonText;
+    displayString = 0;
+  } else if (buttonText == "=") {
+    result = eval(evalString);
+    displayString = result;
   }
 };
 
@@ -42,6 +41,6 @@ buttons.forEach((btn) => {
     buttonText = event.target.innerText;
     console.log(buttonText);
     inputProcessor(buttonText);
-    displayCalc(numberString);
+    displayCalc(displayString);
   });
 });
