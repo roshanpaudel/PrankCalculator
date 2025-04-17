@@ -14,6 +14,16 @@
   border-radius: 10px;
   background-color: rgb(168, 168, 168);
   box-shadow: 0px 20px 40px 10px rgba(88, 88, 88, 0.363);
+  transform: perspective(70rem) rotateX(30deg);
+  animation: flipIn 0.8s ease-out forwards;
+}
+@keyframes flipIn {
+  from {
+    transform: perspective(10rem) rotateX(40deg);
+  }
+  to {
+    transform: perspective(70rem) rotateX(30deg);
+  }
 }
 
 .display {
@@ -32,6 +42,13 @@ button {
   padding: 10px 20px;
   box-shadow: 0px 4px 4px 1px rgba(94, 94, 94, 0.842);
   border: 0;
+}
+button:hover {
+  background-color: yellowgreen;
+}
+button:active {
+  transform: scale(0.9);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 #equals {
   grid-column: span 2; /* Make the = button span two columns */
