@@ -53,3 +53,24 @@ button:active {
 #equals {
   grid-column: span 2; /* Make the = button span two columns */
 }
+
+.animate {
+  background-color: red;
+  color: white;
+  animation: nudge 0.1s ease-in-out 0s 3; /* 0.5s duration, no delay, 3 iterations */
+}
+
+@keyframes nudge {
+  0% {
+    transform: translateX(0); /* Start at normal position */
+  }
+  30% {
+    transform: translateX(5px); /* Move right */
+  }
+  60% {
+    transform: translateX(-5px); /* Move left */
+  }
+  100% {
+    transform: translateX(0); /* Back to normal */
+  }
+}
