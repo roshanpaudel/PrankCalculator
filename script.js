@@ -15,6 +15,12 @@ buttons.forEach((btn) => {
 
 const displayCalc = function (displayString) {
   const display = document.getElementById("display");
+  if (displayString === "134") {
+    display.innerText = "I ❤︎ you";
+    display.style.backgroundColor = "red";
+    display.style.color = "white";
+    return;
+  }
   display.innerText = displayString;
 };
 
