@@ -1,7 +1,8 @@
 let buttonText = null;
 let displayString = "";
 let operators = ["+", "-", "/", "*", "%"];
-
+let lastOperator = "";
+let hitEquals = false;
 //Event-listener
 const buttons = document.querySelectorAll("button");
 buttons.forEach((btn) => {
@@ -19,14 +20,26 @@ const displayCalc = function (displayString) {
 
 const deleteLast = function (str) {
   displayString = str.slice(0, -1);
-  return displayString;
+};
+
+//resets the input after equal is clicked when user inputs number
+const equalsClicked = function () {
+  if (hitEquals == true) {
+    displayString = "";
+    hitEquals = false;
+  }
 };
 
 const inputProcessor = function (buttonText) {
-  if (Number(buttonText)) {
+  if (buttonText === "0" || !isNaN(buttonText)) {
+    if (displayString[0] === "0") {
+      deleteLast(displayString);
+    }
+    equalsClicked();
     displayString += buttonText;
   } else if (buttonText === "AC") {
-    displayString = "";
+    displayString = "0";
+    lastOperator = "";
   } else if (buttonText === "C") {
     deleteLast(displayString);
   } else if (operators.includes(buttonText)) {
@@ -37,11 +50,22 @@ const inputProcessor = function (buttonText) {
     if (operators.includes(displayString.slice(-1))) {
       deleteLast(displayString);
     }
+    hitEquals = false;
+    lastOperator = buttonText;
     displayString += buttonText;
   } else if (buttonText === "=") {
     if (operators.includes(displayString.slice(-1))) {
       deleteLast(displayString);
     }
+    hitEquals = true; //to reset new calculation afterwards
     displayString = eval(displayString).toString();
+  } else if (buttonText === ".") {
+    let lastStr = displayString.slice(displayString.indexOf(lastOperator));
+    console.log(lastStr);
+    if (displayString.includes(".") && !lastOperator) return;
+    if (lastStr.includes(".")) return;
+
+    hitEquals = false;
+    displayString += buttonText;
   }
 };
