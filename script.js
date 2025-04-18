@@ -18,6 +18,9 @@ const displayCalc = function (displayString) {
   if (displayString === "134") {
     display.classList.add("animate");
     display.innerText = "I ❤︎ you";
+    setTimeout(() => {
+      display.classList.remove("animate");
+    }, 5000);
     return;
   }
   display.innerText = displayString;
