@@ -1,10 +1,6 @@
 let buttonText = null;
-let displayText = 0;
-let evalString = 0;
 let displayString = "";
 let operators = ["+", "-", "/", "*", "%"];
-let operatorInput = false;
-let result = 0;
 
 //Event-listener
 const buttons = document.querySelectorAll("button");
@@ -22,7 +18,8 @@ const displayCalc = function (displayString) {
 };
 
 const deleteLast = function (str) {
-  str = str.splice(0, -1);
+  displayString = str.slice(0, -1);
+  return displayString;
 };
 
 const inputProcessor = function (buttonText) {
@@ -37,11 +34,14 @@ const inputProcessor = function (buttonText) {
       displayString = "0" + buttonText;
       return;
     }
-    if (displayString.includes(operators)) {
+    if (operators.includes(displayString.slice(-1))) {
       deleteLast(displayString);
     }
     displayString += buttonText;
   } else if (buttonText === "=") {
+    if (operators.includes(displayString.slice(-1))) {
+      deleteLast(displayString);
+    }
     displayString = eval(displayString).toString();
   }
 };
